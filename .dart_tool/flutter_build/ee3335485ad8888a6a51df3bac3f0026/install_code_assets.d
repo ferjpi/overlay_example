@@ -1,0 +1,1 @@
+ /Users/ferjpi/Projects/github.com/ferjpi/overlay_example/.dart_tool/flutter_build/ee3335485ad8888a6a51df3bac3f0026/native_assets.json: 
