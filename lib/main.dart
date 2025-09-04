@@ -15,14 +15,36 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class SelectWidget extends StatelessWidget {
+class SelectWidget extends StatefulWidget {
   const SelectWidget({super.key});
+
+  @override
+  State<SelectWidget> createState() => _SelectWidgetState();
+}
+
+class _SelectWidgetState extends State<SelectWidget> {
+  void openMenu() {
+    OverlayEntry overlayEntry = OverlayEntry(
+      builder: (context) {
+        return Container(
+          width: 200,
+          height: 200,
+          child: Column(
+            children: [Text('option A'), Text('option B'), Text('option C')],
+          ),
+        );
+      },
+    );
+
+    Overlay.of(context).insert(overlayEntry);
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         print('tapped');
+        openMenu();
       },
       child: Container(
         width: 200,
