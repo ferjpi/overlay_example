@@ -23,12 +23,21 @@ class SelectWidget extends StatefulWidget {
 }
 
 class _SelectWidgetState extends State<SelectWidget> {
+  OverlayEntry? _overlayEntry;
+
   void openMenu() {
-    OverlayEntry overlayEntry = OverlayEntry(
+    closeMenu();
+
+    _overlayEntry = OverlayEntry(
       builder: (context) {
         return Container(
           width: 200,
           height: 200,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.black),
+          ),
           child: Column(
             children: [Text('option A'), Text('option B'), Text('option C')],
           ),
@@ -36,7 +45,19 @@ class _SelectWidgetState extends State<SelectWidget> {
       },
     );
 
-    Overlay.of(context).insert(overlayEntry);
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  void closeMenu() {
+    _overlayEntry?.remove();
+    _overlayEntry?.dispose();
+    _overlayEntry = null;
+  }
+
+  @override
+  void dispose() {
+    closeMenu();
+    super.dispose();
   }
 
   @override
